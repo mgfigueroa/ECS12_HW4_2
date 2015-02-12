@@ -1,5 +1,4 @@
 
-int count = 0;
 void setup()
 {
   size(800, 800);
@@ -26,9 +25,10 @@ void draw()
 }
 
 void drawAnimal() {
-  float body_x = random(68, 82); //75
-  float body_y = random(43, 57); //50
-  float eyes = random(-2,2);
+  float body_x = random(68, 82); //Varies body length
+  float body_y = random(43, 57); //Varies body width
+  float eyes = random(-2,2); //Changes direction of eyes
+  
   float direction = random(-3, 1);
   float head_x = 0;
   float tail_x = 0;
@@ -39,39 +39,61 @@ void drawAnimal() {
     head_x = body_x-18;
   }
   
+
+  color[] c = { color(74,32,32), color(70,70,70), color(0,0,0), color(95,25,0), color(84,40,25) };
+  int index = (floor(random(0, 5)));
+  color col = c[index];
+  
   //REAR LEFT LEG
   ellipse(-22, 18, 17, 30);
+  
   //REAR RIGHT LEG
   ellipse(7, 15, 17, 30);
+  
+  //ONLY BACKWARDS FACING
   if(direction >= 0){
+  //BACKWARD EARS
   strokeWeight(2);
   ellipse(-3+head_x, -22, 15, 8);
   ellipse(-47+head_x, -22, 15, 8); 
   strokeWeight(5);
+  
+  //BACKWARD HEAD
   ellipse(-25+head_x, -10, 35, 48);
-  }
+  }//END BACKWARDS FACING
+  
   //BODY
   ellipse(0, 0, body_x, body_y);
+  
   //TAIL
   if(direction < 0){
   ellipse(36, 7, 2, 22);
   }
+  
   //NEAR LEFT LEG
   ellipse(-7, 20, 17, 30);
+  
   //NEAR RIGHT LEG
   ellipse(23, 17, 17, 30);
+  
   //WHITE ELLIPSE TO REMOVE LEG LINES
   stroke(255);
   ellipse(0, 0, body_x - 10, body_y - 10);
   stroke(0);
+  
   //SPOTS
-  fill(0);
-  ellipse( spot_x*random(0, 15), random(-15, 5), random(12, 20), random(12, 20) );
+  fill(col);
+  stroke(col);
+  ellipse( spot_x*random(3, 13), random(-10, 5), random(12, 20), random(12, 20) );
   fill(255);
+  stroke(0);
+  
   //HEAD
   if(direction < 0){
   ellipse(-25, -10, 35, 48);
   }
+  
+  //ONLY ON FRONT FACING
   //NOSE
   if(direction < 0){
   fill(#FF9999);
@@ -94,8 +116,9 @@ void drawAnimal() {
   ellipse(-3, -22, 15, 8);
   ellipse(-47, -22, 15, 8); 
   strokeWeight(5);
-  }
-  //TAIL
+  }//END FRONT FACING
+  
+  //BACKWARDS TAIL
   if(direction >= 0){
   ellipse(36+tail_x, 7, 2, 28);
   }
