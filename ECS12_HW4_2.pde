@@ -15,16 +15,16 @@ void draw()
   for (int x = 0; x<=725; x+=125) {
     for (int y = 0; y<=725; y+=125) {
       pushMatrix();
-      
       translate(random(60,122)+x, random(60,122)+y); 
-      drawAnimal();
+      float ratio = .75 + .28 * y;
+      drawAnimal(ratio);
       popMatrix();
     }
   }
   noLoop();
 }
 
-void drawAnimal() {
+void drawAnimal(float ratio) {
   float body_x = random(68, 82); //Varies body length
   float body_y = random(43, 57); //Varies body width
   float eyes = random(-2,2); //Changes direction of eyes
